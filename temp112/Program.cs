@@ -1,3 +1,5 @@
+Console.Title = "server";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
