@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Serilog;
@@ -14,10 +15,12 @@ namespace consumer
             // Настройка Serilog для записи в файл
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
-                .CreateLogger();
+			//.WriteTo.Seq("https://seq.pit.protei.ru/")
+			.WriteTo.Seq("http://localhost:5341")
+				.CreateLogger();
 
-            // Настройка RabbitMQ
-            var factory = new ConnectionFactory
+			// Настройка RabbitMQ
+			var factory = new ConnectionFactory
             {
                 Uri = new Uri("amqp://admin:admin@172.16.211.18/termidesk")
             };

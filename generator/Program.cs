@@ -17,8 +17,10 @@ public class SoapMessageGenerator
     {
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()  // Логирование в консоль
-            .CreateLogger();
-    }
+			//.WriteTo.Seq("https://seq.pit.protei.ru/")
+			.WriteTo.Seq("http://localhost:5341")
+			.CreateLogger();
+	}
 
     // Генерация SOAP-сообщения с случайными данными
     public static string GenerateSoapMessage()

@@ -18,10 +18,11 @@ namespace temp112.Controllers
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .CreateLogger();
+				.WriteTo.Seq("https://seq.pit.protei.ru/")
+				.CreateLogger();
 
-            // Настройка RabbitMQ подключения
-            var factory = new ConnectionFactory
+			// Настройка RabbitMQ подключения
+			var factory = new ConnectionFactory
             {
                 Uri = new Uri("amqp://admin:admin@172.16.211.18/termidesk")
             };
